@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repent & Believe</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  body { background: #0f0f0f; color: white; padding: 20px 16px 40px; }
+
+  /* HEADER */
+  .header { text-align: center; margin: 20px 0 25px; }
+  .header h1 { color: #FFD700; font-size: 32px; line-height: 1.1; }
+  .header h1 span { font-size: 30px; }
+  .built-by { color: #aaa; font-size: 12px; letter-spacing: 2px; margin: 6px 0 10px; text-transform: uppercase; }
+  .built-by b { color: #FFD700; }
+  .subtitle { color: #eee; font-size: 16px; }
+
+  /* CARDS */
+  .card { background: #1e1e1e; border-radius: 18px; padding: 22px 20px; margin-bottom: 18px; }
+  .card h2 { font-size: 20px; margin-bottom: 16px; }
+  .card p { color: #ddd; font-size: 15px; line-height: 1.6; margin-bottom: 14px; }
+  .card p b { color: white; }
+  .prayer-text { font-style: italic; color: #eee; font-size: 16px; line-height: 1.6; }
+
+  /* BUTTONS */
+  .yellow-btn {
+    background: #FFD700; color: black; border: none;
+    padding: 15px; width: 100%; border-radius: 12px;
+    font-size: 17px; font-weight: 800; cursor: pointer; margin-top: 8px;
+  }
+  .outline-btn {
+    background: transparent; color: black; border: 2px solid black;
+    padding: 13px; width: 100%; border-radius: 12px;
+    font-size: 17px; font-weight: 800; cursor: pointer; margin-top: 10px;
+  }
+  .yellow-btn:active, .outline-btn:active { transform: scale(0.98); }
+
+  /* WELCOME MESSAGE */
+  #welcomeMessage {
+    display: none; text-align: center; color: #FFD700;
+    font-weight: 800; font-size: 16px; line-height: 1.5; margin-top: 15px;
+  }
+
+  /* NEXT STEPS */
+  .next-steps { list-style: none; color: #ddd; font-size: 15px; line-height: 1.8; }
+  .next-steps li { margin-bottom: 4px; }
+
+  /* FOOTER */
+  .footer { text-align: center; color: #888; font-size: 13px; margin-top: 25px; line-height: 1.6; }
+  .footer b { color: #FFD700; }
+
+  /* MODALS - Shared */
+  .modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.75); display: flex;
+    align-items: center; justify-content: center;
+    z-index: 1000; padding: 20px;
+  }
+  .modal-card {
+    background: white; color: black; border-radius: 20px;
+    padding: 30px 24px; text-align: center;
+    max-width: 380px; width: 100%;
+  }
+  .modal-card h2 { color: #d40000; font-size: 24px; margin-bottom: 12px; }
+  .modal-card p { color: #333; font-size: 16px; line-height: 1.5; margin-bottom: 12px; }
+  .celebration-emoji { font-size: 45px; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1><span>✝️</span> Repent & Believe</h1>
+    <div class="built-by">Built by <b>Sarpong George</b></div>
+    <div class="subtitle">Jesus loves you. He died for you.</div>
+  </div>
+
+  <!-- 1. SCRIPTURES -->
+  <div class="card" id="scriptures">
+    <h2>1. Read These Scriptures</h2>
+    <p><b>John 3:16</b> - "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life."</p>
+    <p><b>Romans 3:23</b> - "For all have sinned and fall short of the glory of God."</p>
+    <p><b>Romans 10:9</b> - "If you declare with your mouth, 'Jesus is Lord,' and believe in your heart that God raised him from the dead, you will be saved."</p>
+    <p style="margin-bottom:0;"><b>1 John 1:9</b> - "If we confess our sins, he is faithful and just and will forgive us our sins."</p>
+  </div>
+
+  <!-- 2. PRAYER -->
+  <div class="card" id="prayerSection">
+    <h2>2. Say This Prayer</h2>
+    <p class="prayer-text">"Lord Jesus, I believe You died for my sins and rose again. I repent from my sins. Please forgive me, come into my heart, and be my Lord and Savior. Help me to follow You from today. Amen."</p>
+    <button class="yellow-btn" onclick="prayedPrayer()">I Have Prayed This Prayer</button>
+    <p id="welcomeMessage">🎉 Welcome to the family of God!<br>You are now saved. Read your Bible daily and pray every day.</p>
+  </div>
+
+  <!-- 3. NEXT STEPS -->
+  <div class="card" id="nextSteps">
+    <h2>3. Next Steps As A Believer</h2>
+    <ol class="next-steps">
+      <li>1. Pray every day</li>
+      <li>2. Read John in the Bible first</li>
+      <li>3. Tell someone you believe in Jesus</li>
+      <li>4. Find a church near you</li>
+    </ol>
+  </div>
+
+  <div class="footer">
+    Built with ❤️ by <b>Sarpong George</b><br>
+    Front End Developer | © 2026 Sarpong George
+  </div>
+
+  <!-- FIRST POPUP - ON LOAD -->
+  <div id="introModal" class="modal-overlay">
+    <div class="modal-card">
+      <h2>Repent From Your Sins</h2>
+      <p>Take Jesus as your Savior today.<br>Tomorrow is not promised.</p>
+      <p><b>"Repent, then, and turn to God, so that your sins may be wiped out." - Acts 3:19</b></p>
+      <button class="yellow-btn" onclick="goToPrayer()">I Want To Repent</button>
+      <button class="outline-btn" onclick="goToScriptures()">Read Scriptures First</button>
+    </div>
+  </div>
+
+  <!-- CELEBRATION POPUP - REPLACES alert() -->
+  <div id="celebrationModal" class="modal-overlay" style="display: none;">
+    <div class="modal-card">
+      <div class="celebration-emoji">🎉</div>
+      <h2>Welcome to the Family of God!</h2>
+      <p>Heaven is rejoicing over you.</p>
+      <p><b>"There is rejoicing in heaven over one sinner who repents." - Luke 15:7</b></p>
+      <button class="yellow-btn" onclick="closeCelebration()">Amen 🙏</button>
+    </div>
+  </div>
+
+<script>
+  // 1. Read Scriptures First -> close popup, scroll to scriptures
+  function goToScriptures() {
+    document.getElementById("introModal").style.display = "none";
+    document.getElementById("scriptures").scrollIntoView({ behavior: "smooth" });
+  }
+
+  // 2. I Want To Repent -> close popup, scroll to prayer
+  function goToPrayer() {
+    document.getElementById("introModal").style.display = "none";
+    document.getElementById("prayerSection").scrollIntoView({ behavior: "smooth" });
+  }
+
+  // 3. I Have Prayed This Prayer -> show welcome + celebration popup
+  function prayedPrayer() {
+    document.getElementById("welcomeMessage").style.display = "block";
+    document.getElementById("celebrationModal").style.display = "flex";
+  }
+
+  // 4. Amen -> close celebration, scroll to Next Steps
+  function closeCelebration() {
+    document.getElementById("celebrationModal").style.display = "none";
+    document.getElementById("nextSteps").scrollIntoView({ behavior: "smooth" });
+  }
+</script>
+
+</body>
+</html>
